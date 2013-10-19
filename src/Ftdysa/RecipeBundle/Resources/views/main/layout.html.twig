@@ -1,0 +1,64 @@
+{% block head %}
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Recipes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recipes collection" />
+    <meta name="author" content="Fred Dysart" />
+    <meta charset="utf-8">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/ftdysarecipe/vendors/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/ftdysarecipe/css/styles.css') }}">
+    {% endblock %}
+
+</head>
+{% endblock head %}
+
+<body>
+    <div id="wrap">
+{% block topMenu %}
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{{ path('recipes.main.index') }}" class="navbar-brand">Recipe Tracker</a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ path('recipes.main.add') }}">Add a Recipe</a></li>
+                        <li><a href="{{ path('recipes.main.search') }}">Search</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="https://github.com/ftdysa/recipes" target="_blank">Fork Me</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block main %}
+{% endblock %}
+    </div>
+
+{% block footer %}
+<div id="footer">
+    <div class="container">
+        <p>Some text for footer goes here</p>
+    </div>
+</div>
+
+{% block footerJs %}
+    <script src="{{ asset('bundles/ftdysarecipe/vendors/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/ftdysarecipe/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock footerJs %}
+
+</body>
+</html>
+{% endblock footer %}
