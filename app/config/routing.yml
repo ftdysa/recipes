@@ -1,0 +1,3 @@
+# AcmeDemoBundle routes (to be removed)
+recipes:
+    resource: "@FtdysaRecipeBundle/Resources/config/routing.yml"
