@@ -21,10 +21,12 @@ class Ingredient {
      */
     protected $id;
 
+
     /**
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255)
      */
-    protected $name;
+    protected $description;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="ingredient")
@@ -39,23 +41,18 @@ class Ingredient {
 
     /**
      * @ORM\ManyToOne(targetEntity="UnitOfMeasurement")
-     * @ORM\JoinColumn(name="unit_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="unit_id", referencedColumnName="id", nullable=true)
      */
     protected $unit;
 
-    /**
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    protected $description;
-
-    public function setName($name) {
-        $this->name = $name;
+    public function setDescription($desc) {
+        $this->description = $desc;
 
         return $this;
     }
 
-    public function getName() {
-        return $this->name;
+    public function getDescription() {
+        return $this->description;
     }
 
     public function setRecipe(Recipe $recipe) {
@@ -68,20 +65,23 @@ class Ingredient {
         return $this->recipe;
     }
 
+    public function setAmount($amt) {
+        $this->amount = $amt;
+
+        return $this;
+    }
+
+    public function getAmount() {
+        return $this;
+    }
+
     public function setUnit(UnitOfMeasurement $unit) {
         $this->unit = $unit;
 
         return $this;
     }
 
-    public function setDescription($desc) {
-        $this->description = $desc;
-
-        return $this;
+    public function getUnit() {
+        return $this->unit;
     }
-
-    public function getDescription() {
-        return $this->description;
-    }
-
 }
