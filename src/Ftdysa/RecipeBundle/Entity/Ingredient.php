@@ -45,6 +45,10 @@ class Ingredient {
      */
     protected $unit;
 
+    public function getId() {
+        return $this->id;
+    }
+
     public function setDescription($desc) {
         $this->description = $desc;
 

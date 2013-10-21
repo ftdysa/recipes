@@ -1,0 +1,16 @@
+{% extends 'FtdysaRecipeBundle:Main:layout.html.twig' %}
+{% form_theme form 'FtdysaRecipeBundle:Form:fields.html.twig' %}
+{% block main %}
+    <div class="container">
+        <div class="page-header">
+            <h1>Add a recipe</h1>
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.prepTime) }}
+            {{ form_row(form.cookTime) }}
+            {{ form_row(form.servingSize) }}
+            <input type="submit" name="submit" value="Save" class="btn btn-primary" />
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

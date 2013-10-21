@@ -49,6 +49,10 @@ class Recipe {
         $this->directions = new ArrayCollection();
     }
 
+    public function getId() {
+        return $this->id;
+    }
+
     public function getName() {
         return $this->name;
     }

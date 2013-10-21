@@ -35,6 +35,10 @@ class RecipeDirection {
      */
     protected $listNum;
 
+    public function getId() {
+        return $this->id;
+    }
+
     public function setDescription($desc) {
         $this->description = $desc;
 

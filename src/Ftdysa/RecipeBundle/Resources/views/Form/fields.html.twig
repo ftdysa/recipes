@@ -1,0 +1,143 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_start %}
+    {% set layout = layout|default %}
+    {% set class = attr.class|default %}
+    {% if layout == 'horizontal' %}
+        {% set class = 'form-horizontal ' ~ class %}
+    {% elseif layout == 'inline' %}
+        {% set class = 'form-inline ' ~ class %}
+    {% elseif layout == 'navbar' %}
+        {% set class = 'navbar-form ' ~ class %}
+    {% endif %}
+
+    {% set attr = attr|merge({class: class}) %}
+    {% set labels_to_placeholders = labels_to_placeholders|default(false) %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block form_rows %}
+    {% spaceless %}
+        {% for child in form %}
+            {{ form_row(child, {labels_to_placeholders: labels_to_placeholders|default(false), layout: layout|default}) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_row %}
+    {% set layout = layout|default %}
+    {% set labels_to_placeholders = labels_to_placeholders|default(false) %}
+    {% spaceless %}
+        <div class="form-group {% if errors is not empty %}has-error{% endif %}">
+            {% if not labels_to_placeholders %}
+                {{ form_label(form, false, {label_attr: {class: (layout == 'horizontal' ? 'col-lg-2 control-label' : '') }}) }}
+            {% endif %}
+
+            {% if layout == 'horizontal' %}<div class="col-lg-10">{% endif %}
+                {% if labels_to_placeholders %}
+                    {% set attr = attr|merge({placeholder: label}) %}
+                {% endif %}
+
+                {{ form_widget(form, {attr: attr}) }}
+                {% if errors is not empty %}
+                    <div class="help-block">{{ form_errors(form) }}</div>
+                {% endif %}
+                {% if layout == 'horizontal' %}</div>{% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_rest %}
+    {% spaceless %}
+        {% for child in form %}
+            {% if not child.rendered %}
+                {{ form_row(child, {layout: layout|default}) }}
+            {% endif %}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_widget_simple %}
+    {% if type|default != 'file' %}
+        {% set attr = attr|merge({class: 'form-control'}) %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block choice_widget_collapsed %}
+    {% set class = 'form-control ' ~ attr.class|default %}
+    {% set attr = attr|merge({class: class}) %}
+    {{ parent() }}
+{% endblock %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                <div class="{{ multiple ? 'checkbox' : 'radio' }}">
+                    <label>
+                        {{ form_widget(child) }}
+                        {{ child.vars.label }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block checkbox_row %}
+    {% spaceless %}
+        <div class="checkbox">
+            <label>
+                {{ form_widget(form) }}
+                {{ form_label(form) }}
+            </label>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors is not empty %}
+            {% for error in errors %}
+                {{ error.message }}<br/>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block button_row %}
+    {% set layout = layout|default %}
+    {% spaceless %}
+        {% if layout == 'horizontal' %}
+            <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+        {% endif %}
+        {{ form_widget(form) }}
+        {% if layout == 'horizontal' %}
+            </div>
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block button_widget %}
+    {% set class = 'btn btn-' ~ context ~ ' ' ~ attr.class|default %}
+    {% set attr = attr|merge({class: class}) %}
+
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+            {% if icon %}<i class="icon-{{ icon }}"></i>{% endif %}
+            {{ label|trans({}, translation_domain) }}
+        </button>
+    {% endspaceless %}
+{% endblock %}
+
+{% block textarea_widget %}
+    {% set attr = attr|merge({class: 'form-control ' ~ attr.class|default}) %}
+    {{ parent() }}
+{% endblock %}

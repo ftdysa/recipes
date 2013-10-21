@@ -6,6 +6,10 @@ recipes.main.search:
   path: /search
   defaults: { _controller: FtdysaRecipeBundle:Main:search }
 
-recipes.main.add:
+recipes.recipe.add:
   path: /recipes/add
   defaults: { _controller: FtdysaRecipeBundle:Recipe:add }
+
+recipes.recipe.view:
+  path: /recipe/view/{id}
+  defaults: { _controller: FtdysaRecipeBundle:Recipe:view }

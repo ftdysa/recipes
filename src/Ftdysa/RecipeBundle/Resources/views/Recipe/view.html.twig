@@ -1,0 +1,14 @@
+{% extends 'FtdysaRecipeBundle:Main:layout.html.twig' %}
+
+{% block main %}
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ recipe.name }}</h1>
+            <ul>
+                <li>{{ recipe.name|e }}</li>
+                <li>{{ recipe.prepTime }}</li>
+                <li>{{ recipe.cookTime }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
