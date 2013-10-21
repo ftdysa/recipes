@@ -1,0 +1,14 @@
+{% extends 'FtdysaRecipeBundle:Main:layout.html.twig' %}
+
+{% block main %}
+    <div class="container">
+        <div class="page-header">
+            <h1>Hello World</h1>
+            <ul>
+                {% for recipe in recipes %}
+                    <li><a href="{{ path('recipes.recipe.view', {'id': recipe.id }) }}">{{ recipe.name|e }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

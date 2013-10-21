@@ -16,8 +16,8 @@
 {% endblock head %}
 
 <body>
-    <div id="wrap">
-{% block topMenu %}
+<div id="wrap">
+    {% block topMenu %}
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -41,11 +41,11 @@
                 </div>
             </div>
         </div>
-{% endblock %}
+    {% endblock %}
 
-{% block main %}
-{% endblock %}
-    </div>
+    {% block main %}
+    {% endblock %}
+</div>
 
 {% block footer %}
 <div id="footer">
