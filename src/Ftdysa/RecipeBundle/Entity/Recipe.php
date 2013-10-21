@@ -1,15 +1,36 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Fred
- * Date: 10/19/13
- * Time: 3:59 PM
- * To change this template use File | Settings | File Templates.
- */
 
 namespace Ftdysa\RecipeBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class Recipe
+ * @package Ftdysa\RecipeBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="recipe")
+ */
 class Recipe {
 
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    protected $name;
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+
+        return $this;
+    }
 }
